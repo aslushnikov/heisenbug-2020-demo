@@ -2,7 +2,9 @@ const {webkit, chromium, firefox} = require('playwright');
 
 (async () => {
   for (const browserType of [webkit, firefox, chromium]) {
-    const browser = await browserType.launch();
+    const browser = await browserType.launch({
+      headless: false,
+    });
     const page = await browser.newPage();
     await page.goto('https://github.com/microsoft/playwright');
     await page.screenshot({
